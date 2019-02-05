@@ -28,27 +28,30 @@ export class ClientesComponent implements OnInit {
     })
 
     swalWithBootstrapButtons.fire({
-      title: 'Are you sure?',
-      text: "You won't be able to revert this!",
+      title: '¿Estas seguro?',
+      text: `¿Seguro que deseas eliminar al cliente ${cliente.nombre} ${cliente.apellido}?`,
       type: 'warning',
       showCancelButton: true,
-      confirmButtonText: 'Yes, delete it!',
-      cancelButtonText: 'No, cancel!',
+      confirmButtonText: 'Si, eliminar!',
+      cancelButtonText: 'No, cancelar!',
       reverseButtons: true
     }).then((result) => {
       if (result.value) {
-        swalWithBootstrapButtons.fire(
-          'Deleted!',
-          'Your file has been deleted.',
-          'success'
-        )
+        this.clienteService.delete(cliente.id).subscribe( response => {
+          this.clientes = this.clientes.filter( cli => cli !== cliente)
+          swalWithBootstrapButtons.fire(
+            '¡Eliminado!',
+            `El cliente ${cliente.nombre} ha sido eliminado con éxito.`,
+            'success'
+          )
+        })
       } else if (
         // Read more about handling dismissals
         result.dismiss === Swal.DismissReason.cancel
       ) {
         swalWithBootstrapButtons.fire(
-          'Cancelled',
-          'Your imaginary file is safe :)',
+          'Cancelado.',
+          'El cliente esta seguro ;)',
           'error'
         )
       }
