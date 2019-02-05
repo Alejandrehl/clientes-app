@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
+  titulo = "Formulario";
+
   constructor() { }
 
   ngOnInit() {
