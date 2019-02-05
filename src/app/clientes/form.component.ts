@@ -18,6 +18,7 @@ export class FormComponent implements OnInit {
     private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.cargarCliente()
   }
 
   public create(): void {
@@ -34,7 +35,7 @@ export class FormComponent implements OnInit {
       let id = params['id'];
 
       if(id) {
-        this.clienteService.getCliente(id).subscribe( cliente => this.cliente )
+        this.clienteService.getCliente(id).subscribe( cliente => this.cliente = cliente )
       }
     })
   }
