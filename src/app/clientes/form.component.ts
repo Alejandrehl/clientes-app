@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Cliente } from './cliente';
 
 @Component({
   selector: 'app-form',
@@ -6,11 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FormComponent implements OnInit {
 
-  titulo = "Formulario";
+  private cliente: Cliente = new Cliente();
+  private titulo: string = "Crear cliente";
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public create(): void {
+    console.log("Clicked");
+    console.log(this.cliente);
   }
 
 }
